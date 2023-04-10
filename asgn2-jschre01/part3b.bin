@@ -1,0 +1,18 @@
+0011 0000 0000 0000; Start program at position x3000. Jonathan Schreiber\
+0101 001 001 1 00000; Clear R1, where number is stored\
+0101 010 010 1 00000; Clear R2, Mask\
+0101 011 011 1 00000; Clear R3, Result register\
+0101 100 100 1 00000; Clear R4, New bit determiner\
+0101 101 101 1 00000; Clear R5, # of bits still to be visited\
+0001 010 010 1 00001; Set R2 to 1\
+0001 101 101 1 01111; Set R5 to 15\
+0010 001 011111000; Load data from x3100 into R1\
+0001 011 011 0 00011; Add R3, R3 and R3 to bit shift left\
+0101 100 001 0 00010; And R4, R1 and R2 \
+0000 010 000000001; Branch by 1 if result is not positive\
+0001 011 011 1 00001; Add 1 to R3\
+0001 010 010 0 00010; Add R2, R2 and R2 to bit shift left\
+0001 101 101 1 11111; Decrement R5 by 1\
+0000 011 111 1 11001; Branch back if Result is positive or zero\
+0011 011 01111 0001; Store data at x3101\
+1111 0000 0010 0101; HALT\}

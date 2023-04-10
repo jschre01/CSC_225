@@ -1,0 +1,17 @@
+0011 0000 0000 0000   ; Start the program at location 0x3000. Jonathan Schreiber\
+0101 001 001 1 00000 ; Clear R1, the result.\
+0101 010 010 1 00000 ; Clear R2, the mask. \
+0101 011 011 1 00000 ; Clear R3, the bit value determiner\
+0101 100 100 1 00000  ; Clear R4, the Counter of '1''s\
+0101 101 101 1 00000 ; Clear R5, the # of bits to be checked\
+0001 010 010 1 00001 ; Set R2 to 1\
+0001 101 101 1 01111 ; Set R5 to 15\
+0010 001 011 1 11000 ; Load data at x3100 into R1\
+0101 011 010 0 00001 ; Add R1, R2, store result in R3\
+0000 010 000 0 00001 ; Branch by 1 if result is 0\
+0001 100 100 1 00001 ; Add 1 to R4\
+0001 010 010 0 00010; Left shift R2, the bitmask\
+0001 101 101 111111; Decrement R4, # of bits still to be checked\
+0000 011 111 111010; Loop back to x3008 if result is positive/zero\
+0011 100 011110010; Store R4 in memory location x3101\
+1111 0000 00100101    ; Halt.\}
